@@ -1,9 +1,7 @@
 import json
 
 
-# ----------------- Функции -----------------
 def save_tasks(tasks, filename):
-    """Сохраняет список задач в JSON"""
     try:
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(tasks, f, ensure_ascii=False, indent=2)
@@ -12,7 +10,6 @@ def save_tasks(tasks, filename):
 
 
 def load_tasks(filename):
-    """Загружает список задач из JSON или возвращает пустой список"""
     try:
         with open(filename, 'r', encoding='utf-8') as f:
             return json.load(f)
@@ -21,7 +18,6 @@ def load_tasks(filename):
 
 
 def show_tasks(tasks):
-    """Показывает все задачи с индексами и статусом"""
     if not tasks:
         print("Список задач пуст.")
     else:
@@ -32,7 +28,6 @@ def show_tasks(tasks):
 
 
 def add_task(tasks):
-    """Добавляет новую задачу"""
     name = input("Введите название задачи: ").strip()
     if name:
         tasks.append({"task": name, "done": False})
@@ -42,7 +37,6 @@ def add_task(tasks):
 
 
 def complete_task(tasks):
-    """Отмечает задачу как выполненную"""
     show_tasks(tasks)
     try:
         idx = int(input("Введите номер задачи, которую хотите отметить выполненной: "))
@@ -56,7 +50,6 @@ def complete_task(tasks):
 
 
 def delete_task(tasks):
-    """Удаляет задачу по номеру"""
     show_tasks(tasks)
     try:
         idx = int(input("Введите номер задачи для удаления: "))
@@ -69,7 +62,6 @@ def delete_task(tasks):
         print("Введите число.")
 
 
-# ----------------- Основная программа -----------------
 filename = "tasks.json"
 tasks_list = load_tasks(filename)  # загружаем задачи из файла
 
@@ -99,3 +91,4 @@ while True:
         break
     else:
         print("Неверный выбор! Попробуйте снова.")
+
